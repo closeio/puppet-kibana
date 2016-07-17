@@ -1,0 +1,31 @@
+{
+  "name": "closeio-kibana",
+  "version": "0.1.0",
+  "author": "Jeff Tharp",
+  "summary": "Install and configure Kibana",
+  "license": "MIT",
+  "source": "https://github.com/closeio/puppet-kibana.git",
+  "project_page": "https://github.com/closeio/puppet-kibana",
+  "issues_url": "https://github.com/closeio/puppet-kibana/issues",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian"
+    },
+    {
+      "operatingsystem": "Ubuntu"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">=2.7.20 <5.0.0"
+    }
+  ],
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.2.0"}
+  ]
+}

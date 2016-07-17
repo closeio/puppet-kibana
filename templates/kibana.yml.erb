@@ -1,0 +1,50 @@
+## Kibana Server
+host: <%= @bind_host %>
+port: <%= @bind_port %>
+
+# Kibana uses an index in Elasticsearch to store saved searches, visualizations
+# and dashboards. It will create a new index if it doesn't already exist.
+kibana_index: "<%= @kibana_index %>"
+
+# The default application to load.
+default_app_id: "<%= @default_app_id %>"
+
+# pid_file: <%= @pid_dir %>/kibana.pid
+log_file: <%= @log_dir %>/kibana.log
+
+## Elasticsearch Backend
+elasticsearch_url: "<%= @elasticsearch_url %>"
+elasticsearch_preserve_host: <%= @elasticsearch_preserve_host %>
+
+# If Elasticsearch is protected with basic auth, this is the user credentials used by
+# the Kibana server to perform maintence on the kibana_index at statup. Kibana users
+# will still need to authenticate with Elasticsearch (which is proxied through
+# the Kibana server)
+# kibana_elasticsearch_username: user
+# kibana_elasticsearch_password: pass
+<% if @kibana_elasticsearch_username != '' -%>
+kibana_elasticsearch_username: <%= @kibana_elasticsearch_username %>
+kibana_elasticsearch_password: <%= @kibana_elasticsearch_password %>
+<% end %>
+
+## Timeouts
+# Time in milliseconds to wait for responses from the back end or elasticsearch.
+# This must be > 0
+request_timeout: <%= @request_timeout %>
+# Time in milliseconds for Elasticsearch to wait for responses from shards.
+# Set to 0 to disable.
+shard_timeout: <%= @shard_timeout %>
+
+## Plugins
+# Plugins that are included in the build, and no longer found in the plugins/ folder
+bundled_plugin_ids:
+ - plugins/dashboard/index
+ - plugins/discover/index
+ - plugins/doc/index
+ - plugins/kibana/index
+ - plugins/markdown_vis/index
+ - plugins/metric_vis/index
+ - plugins/settings/index
+ - plugins/table_vis/index
+ - plugins/vis_types/index
+ - plugins/visualize/index
