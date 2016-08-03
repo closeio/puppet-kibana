@@ -23,9 +23,16 @@ class kibana::install inherits kibana {
     require => User['kibana']
   }
 
-  # create associated directories and make sure downloaded files have correct owner/group
+  # Recursively manging permissions in the kibana install root with puppet
+  # is slow and generates lots of logs on every puppet run.  So we just
+  # use chown -R here instead.
+  exec { 'set permissions':
+    command => "/bin/chown -R kibana:kibana ${install_root}/kibana-${version}",
+    require => Exec['download_kibana']
+  }
+
+  # create associated directories
   $kibana_dirs = [
-    "${install_root}/kibana-${version}",
     $babel_dir,
     $config_dir,
     $log_dir,
